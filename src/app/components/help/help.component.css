@@ -1,0 +1,13 @@
+mat-card {
+  width: 40%;
+  margin: 20px auto 0 auto;
+}
+
+p {
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+h2 {
+  margin-top: 10px;
+}

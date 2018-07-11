@@ -1,0 +1,81 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      <h1 class="mat-h1">{{'statisticsComponent_title' | translate}}</h1>
+    </mat-card-title>
+  </mat-card-header>
+  <div *ngIf="firstTry()">
+    <p class="mat-typography">{{'statisticsComponent_firstGame' | translate}}</p>
+  </div>
+  <div *ngIf="!firstTry()">
+    <h2 class="mat-h2">{{'statisticsComponent_qualification' | translate}}</h2>
+    <table class="mat-table">
+      <tr>
+        <th class="mat-header-cell">{{'menuComponent_normalLevel' | translate}}</th>
+        <th class="mat-header-cell">{{'menuComponent_hardLevel' | translate}}</th>
+        <th class="mat-header-cell">{{'menuComponent_extremeLevel' | translate}}</th>
+      </tr>
+      <tr>
+        <td class="mat-cell">
+          <mat-chip-list>
+            <mat-chip id="weak" *ngIf="statistics.isResultWeak(statistics.getNormalMax())"><span>{{'weak' | translate}} </span><mat-icon svgIcon="weak"></mat-icon></mat-chip>
+            <mat-chip id="not-bad" *ngIf="statistics.isResultNotBad(statistics.getNormalMax())"><span>{{'notBad' | translate}} </span><mat-icon svgIcon="not-bad"></mat-icon></mat-chip>
+            <mat-chip id="average" *ngIf="statistics.isResultAverage(statistics.getNormalMax())"><span>{{'average' | translate}} </span><mat-icon svgIcon="average"></mat-icon></mat-chip>
+            <mat-chip id="good" *ngIf="statistics.isResultGood(statistics.getNormalMax())"><span>{{'good' | translate}} </span><mat-icon svgIcon="good"></mat-icon></mat-chip>
+            <mat-chip id="perfect" *ngIf="statistics.isResultPerfect(statistics.getNormalMax())"><span>{{'perfect' | translate}} </span><mat-icon svgIcon="perfect"></mat-icon></mat-chip>
+          </mat-chip-list>
+        </td>
+        <td class="mat-cell">
+          <mat-chip-list>
+            <mat-chip id="weakHard" *ngIf="statistics.isResultWeak(statistics.getHardMax())"><span>{{'weak' | translate}} </span><mat-icon svgIcon="weak"></mat-icon></mat-chip>
+            <mat-chip id="not-badHard" *ngIf="statistics.isResultNotBad(statistics.getHardMax())"><span>{{'notBad' | translate}} </span><mat-icon svgIcon="not-bad"></mat-icon></mat-chip>
+            <mat-chip id="averageHard" *ngIf="statistics.isResultAverage(statistics.getHardMax())"><span>{{'average' | translate}} </span><mat-icon svgIcon="average"></mat-icon></mat-chip>
+            <mat-chip id="goodHard" *ngIf="statistics.isResultGood(statistics.getHardMax())"><span>{{'good' | translate}} </span><mat-icon svgIcon="good"></mat-icon></mat-chip>
+            <mat-chip id="perfectHard" *ngIf="statistics.isResultPerfect(statistics.getHardMax())"><span>{{'perfect' | translate}} </span><mat-icon svgIcon="perfect"></mat-icon></mat-chip>
+          </mat-chip-list>
+        </td>
+        <td class="mat-cell">
+          <mat-chip-list>
+            <mat-chip id="weakExtreme" *ngIf="statistics.isResultWeak(statistics.getExtremeMax())"><span>{{'weak' | translate}} </span><mat-icon svgIcon="weak"></mat-icon></mat-chip>
+            <mat-chip id="not-badExtreme" *ngIf="statistics.isResultNotBad(statistics.getExtremeMax())"><span>{{'notBad' | translate}} </span><mat-icon svgIcon="not-bad"></mat-icon></mat-chip>
+            <mat-chip id="averageExtreme" *ngIf="statistics.isResultAverage(statistics.getExtremeMax())"><span>{{'average' | translate}} </span><mat-icon svgIcon="average"></mat-icon></mat-chip>
+            <mat-chip id="goodExtreme" *ngIf="statistics.isResultGood(statistics.getExtremeMax())"><span>{{'good' | translate}} </span><mat-icon svgIcon="good"></mat-icon></mat-chip>
+            <mat-chip id="perfectExtreme" *ngIf="statistics.isResultPerfect(statistics.getExtremeMax())"><span>{{'perfect' | translate}} </span><mat-icon svgIcon="perfect"></mat-icon></mat-chip>
+          </mat-chip-list>
+        </td>
+      </tr>
+    </table>
+    <h2 class="mat-h2">{{'statisticsComponent_speed' | translate}}</h2>
+    <table class="mat-table">
+      <tr>
+        <th class="mat-header-cell">{{'menuComponent_normalLevel' | translate}}</th>
+        <th class="mat-header-cell">{{'menuComponent_hardLevel' | translate}}</th>
+        <th class="mat-header-cell">{{'menuComponent_extremeLevel' | translate}}</th>
+      </tr>
+      <tr>
+        <td class="mat-cell">
+          {{statistics.getNormalMax()}} {{'charsPerMin' | translate}}
+        </td>
+        <td class="mat-cell">
+          {{statistics.getHardMax()}} {{'charsPerMin' | translate}}
+        </td>
+        <td class="mat-cell">
+          {{statistics.getExtremeMax()}} {{'charsPerMin' | translate}}
+        </td>
+      </tr>
+    </table>
+    <canvas id ="chart" baseChart
+            [datasets]="chartData"
+            [chartType]="barChartType"
+            [options]="barChartOptions"
+            [legend]="barChartLegend"
+            [labels]="labels">
+    </canvas>
+    <h2 class="mat-h2">{{'statisticsComponent_statistics' | translate}}</h2>
+    <mat-list>
+      <mat-list-item>{{'statisticsComponent_numOfTries' | translate}}: {{statistics.getTries()}}</mat-list-item>
+      <mat-list-item>{{'statisticsComponent_pressedKeys' | translate}}: {{statistics.getPressedKeys()}}</mat-list-item>
+      <mat-list-item>{{'statisticsComponent_averageSpeed' | translate}}: {{statistics.averageSpeed()}} {{'charsPerMin' | translate}}</mat-list-item>
+    </mat-list>
+  </div>
+</mat-card>

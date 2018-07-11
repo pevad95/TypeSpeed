@@ -1,0 +1,75 @@
+<div>
+
+  <mat-card class="word-card">
+
+    <h1 *ngIf="!gameService.isPlaying()" class="mat-h1">{{'mainComponent_startTitle' | translate}}</h1>
+    <p *ngIf="!gameService.isPlaying()" class="mat-typography instruction">{{'mainComponent_instruction' | translate}}</p>
+
+    <div>
+      <h1 class="mat-h1" *ngIf="gameService.isPlaying() && !hide">{{word}}</h1>
+      <h1 class="mat-h1" *ngIf="gameService.isPlaying() && hide">...</h1>
+    </div>
+
+    <div *ngIf="gameService.isPlaying()" class="timer" [class.warn]="time < 20">
+      <span>{{'mainComponent_timeLeft' | translate}}: {{time}}</span>
+      <mat-progress-spinner id="timer-progress" mode="determinate" [value]="timeLeftPercentage" [class.warn]="time < 20"></mat-progress-spinner>
+    </div>
+
+    <div>
+      <button mat-raised-button color="primary" (click)="startGame()" *ngIf="game.isOver()">Start</button>
+      <button mat-raised-button (click)="stopGame()" *ngIf="gameService.isPlaying()">Stop</button>
+    </div>
+  </mat-card>
+
+  <div class="word-form">
+    <form [formGroup]="wordForm" novalidate>
+
+      <mat-form-field appearance="outline">
+        <input #wordInput matInput formControlName="typedWord" (keyup)="keyUp($event)">
+        <mat-error *ngIf="typedWord.hasError('incorrectWord')">
+          {{'mainComponent_incorrectWord' | translate}}
+        </mat-error>
+        <mat-icon matSuffix *ngIf="gameService.isPlaying() && correct" svgIcon="tick"></mat-icon>
+        <mat-icon matSuffix *ngIf="gameService.isPlaying() && !correct" svgIcon="cross" color="warn"></mat-icon>
+      </mat-form-field>
+    </form>
+  </div>
+
+  <mat-card [matBadge]="game.getWords()" matBadgeOverlap="false" matBadgeColor="green" class="text-card">
+    <p class="mat-typography">
+      <span *ngFor="let w of words" class="typed-word" [class.correct]="w.correct" [class.incorrect]="!w.correct">{{w.word}}, </span>
+    </p>
+  </mat-card>
+
+  <mat-accordion *ngIf="showResult">
+    <mat-expansion-panel class="results">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{'mainComponent_results' | translate}}
+        </mat-panel-title>
+        <mat-panel-description>
+          {{result.hits}} {{'charsPerMin' | translate}} - {{result.points}} {{'wordsPerMin' | translate}}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <p class="mat-typography">{{'mainComponent_correctWords' | translate}}: {{result.points}}</p>
+      <p class="mat-typography">{{'mainComponent_errors' | translate}}: {{result.errors}}</p>
+      <p class="mat-typography">{{'mainComponent_skippedWords' | translate}}: {{result.skip}}</p>
+      <p class="mat-typography">{{'mainComponent_pressedKeys' | translate}}: {{result.hits}}</p>
+      <p class="mat-typography">{{'mainComponent_rate' | translate}}: {{getResultPercentage()}}%</p>
+      <p class="mat-typography">{{'mainComponent_simpleSpeed' | translate}}: {{getSimpleSpeed()}} {{'wordsPerMin' | translate}}</p>
+      <mat-chip-list>
+        <mat-chip id="weak" *ngIf="statisticsService.isResultWeak(result.hits)"><span>{{'weak' | translate}} </span><mat-icon svgIcon="weak"></mat-icon></mat-chip>
+        <mat-chip id="not-bad" *ngIf="statisticsService.isResultNotBad(result.hits)"><span>{{'notBad' | translate}} </span><mat-icon svgIcon="not-bad"></mat-icon></mat-chip>
+        <mat-chip id="average" *ngIf="statisticsService.isResultAverage(result.hits)"><span>{{'average' | translate}} </span><mat-icon svgIcon="average"></mat-icon></mat-chip>
+        <mat-chip id="good" *ngIf="statisticsService.isResultGood(result.hits)"><span>{{'good' | translate}} </span><mat-icon svgIcon="good"></mat-icon></mat-chip>
+        <mat-chip id="perfect" *ngIf="statisticsService.isResultPerfect(result.hits)"><span>{{'perfect' | translate}} </span><mat-icon svgIcon="perfect"></mat-icon></mat-chip>
+      </mat-chip-list>
+      <div id="hint" *ngIf="statisticsService.getTries() > 0">
+        <p class="good" *ngIf="result.hits > statisticsService.averageSpeed()">{{'mainComponent_betterThanAverage' | translate}}</p>
+        <p class="average" *ngIf="result.hits == statisticsService.averageSpeed()">{{'mainComponent_average' | translate}}</p>
+        <p class="not-bad" *ngIf="result.hits < statisticsService.averageSpeed()">{{'mainComponent_worseThanAverage' | translate}}</p>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+</div>

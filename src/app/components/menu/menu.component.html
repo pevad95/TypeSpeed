@@ -1,0 +1,42 @@
+<mat-toolbar color="primary">
+  <div class="main-menu">
+    <mat-icon svgIcon="finger"></mat-icon>
+    <h1>Type speed</h1>
+    <div>
+      <button mat-button routerLink="main">{{'menuComponent_gameMenu' | translate}}</button>
+      <button mat-button [matMenuTriggerFor]="languagesMenu" [disabled]="gameService.isPlaying()">{{'menuComponent_languagesMenu' | translate}}</button>
+      <mat-menu #languagesMenu="matMenu" yPosition="below" overlapTrigger="false">
+        <button mat-menu-item *ngFor="let language of languages" (click)="chooseLanguage(language.code)"
+          [class.chosen]="language.code == languageService.loadLanguage()">{{language.title | translate}}</button>
+      </mat-menu>
+    </div>
+    <div class="right-side">
+      <button mat-button routerLink="stat" [disabled]="gameService.isPlaying()">{{'menuComponent_statisticsMenu' | translate}}</button>
+      <button mat-button routerLink="help" [disabled]="gameService.isPlaying()">{{'menuComponent_helpMenu' | translate}}</button>
+    </div>
+  </div>
+  <div>
+    <button id="settings" mat-icon-button [matMenuTriggerFor]="appsettingsMenu" [disabled]="gameService.isPlaying()">
+      <mat-icon svgIcon="settings"></mat-icon>
+    </button>
+    <mat-menu #appsettingsMenu="matMenu" yPosition="below" overlapTrigger="false">
+      <button mat-menu-item (click)="clearHistory()">{{'menuComponent_clearHistory' | translate}}</button>
+      <button mat-menu-item [matMenuTriggerFor]="levelMenu">
+        {{'menuComponent_levelItem' | translate}}
+      </button>
+      <button mat-menu-item [matMenuTriggerFor]="appLanguageMenu">
+        {{'menuComponent_appLanguages' | translate}}
+      </button>
+    </mat-menu>
+    <mat-menu #appLanguageMenu="matMenu" yPosition="below" overlapTrigger="false">
+      <button mat-menu-item *ngFor="let l of appLanguages" (click)="chooseAppLanguage(l.code)"
+              [class.chosen]="l.code == appLanguageService.getLanguage()">{{l.title | translate}}
+      </button>
+    </mat-menu>
+    <mat-menu #levelMenu="matMenu" yPosition="below" overlapTrigger="false">
+      <button mat-menu-item *ngFor="let level of levels" (click)="chooseLevel(level.code)"
+              [class.chosen]="level.code == gameService.getLevel()">{{level.title | translate}}
+      </button>
+    </mat-menu>
+  </div>
+</mat-toolbar>

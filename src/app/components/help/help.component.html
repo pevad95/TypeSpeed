@@ -1,0 +1,30 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title><h1 class="mat-h1">{{'helpComponent_aboutTheGame' | translate}}</h1></mat-card-title>
+  </mat-card-header>
+  <p class="mat-typography">
+    {{'helpComponent_description' | translate}}
+  </p>
+  <h2 class="mat-h2">
+    {{'helpComponent_qualification' | translate}}
+  </h2>
+    <mat-chip-list>
+      <mat-list>
+        <mat-list-item>
+          <mat-chip id="weak"><span>{{'weak' | translate}} </span><mat-icon svgIcon="weak"></mat-icon></mat-chip> {{'helpComponent_limitWeak' | translate}}<br>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-chip id="not-bad"><span>{{'notBad' | translate}} </span><mat-icon svgIcon="not-bad"></mat-icon></mat-chip> {{'helpComponent_limitNotBad' | translate}}<br>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-chip id="average"><span>{{'average' | translate}} </span><mat-icon svgIcon="average"></mat-icon></mat-chip> {{'helpComponent_limitAverage' | translate}}<br>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-chip id="good"><span>{{'good' | translate}} </span><mat-icon svgIcon="good"></mat-icon></mat-chip> {{'helpComponent_limitGood' | translate}}<br>
+        </mat-list-item>
+        <mat-list-item>
+          <mat-chip id="perfect"><span>{{'perfect' | translate}} </span><mat-icon svgIcon="perfect"></mat-icon></mat-chip> {{'helpComponent_limitPerfect' | translate}}<br>
+        </mat-list-item>
+      </mat-list>
+    </mat-chip-list>
+</mat-card>

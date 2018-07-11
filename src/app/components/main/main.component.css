@@ -1,0 +1,88 @@
+.word-card {
+  width: 50%;
+  margin: 20px auto 0 auto;
+}
+
+h1 {
+  text-align: center;
+  margin: 30px auto 0 auto;
+  font-weight: bold;
+}
+
+.timer span {
+  display: block;
+  text-align: center;
+}
+
+.timer * {
+  margin: 30px auto 0 auto;
+  width: 50%;
+}
+
+.warn {
+  color: red;
+  font-weight: bold;
+}
+
+.word-form {
+  width: 50%;
+  margin: 20px auto 0 auto;
+  padding: 0;
+}
+
+.instruction {
+  text-align: center;
+  margin-top: 5px;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+button {
+  display: block;
+  margin: 20px auto 0 auto;
+}
+
+.results {
+  margin: auto;
+  width: 30%;
+}
+
+#hint {
+  margin-top: 10px;
+}
+
+p.good {
+  color: darkgreen;
+}
+
+p.average {
+  color: dodgerblue;
+}
+
+p.not-bad {
+  color: orangered;
+}
+
+p.average, p.not-bad, p.good {
+  font-weight: bold;
+  text-align: center;
+}
+
+.typed-word {
+  white-space: pre-wrap;
+}
+
+.typed-word.correct {
+  color: darkgreen;
+}
+
+.typed-word.incorrect {
+  color: red;
+}
+
+.text-card {
+  width: 50%;
+  margin: 20px auto 20px auto;
+}

@@ -1,1 +1,54 @@
-/* You can add global styles to this file, and also import other style files */
+/*@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+}
+
+.correct-snackbar {
+  background-color: green;
+}
+
+.incorrect-snackbar {
+  background-color: red;
+}
+
+
+#weak {
+  background-color: #f44336;
+}
+
+#not-bad {
+  background-color: darkorange;
+}
+
+#average {
+  background-color: #757575;
+}
+
+#good {
+  background-color: darkgreen;
+}
+
+#perfect {
+  background-color: deepskyblue;
+}
+
+#weak, #not-bad, #average, #good, #perfect {
+  color: white;
+  font-weight: bold;
+}
+
+mat-chip-list {
+  display: flex;
+  justify-content: center;
+}
+
+span {
+  white-space: pre-wrap;
+}
+*/

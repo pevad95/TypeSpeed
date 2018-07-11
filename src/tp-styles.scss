@@ -1,0 +1,76 @@
+@import '~@angular/material/theming';
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "animations";
+
+@include mat-core();
+
+$app-primary: mat-palette($mat-blue-gray);
+$app-accent:  mat-palette($mat-indigo, A200, A100, A400);
+
+$app-warn:   mat-palette($mat-red);
+
+$app-theme: mat-light-theme($app-primary, $app-accent, $app-warn);
+
+@include angular-material-theme($app-theme);
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  background-color: #fafafa;
+}
+
+.correct-snackbar {
+  background-color: green;
+}
+
+.incorrect-snackbar {
+  background-color: red;
+}
+
+
+#weak, #weakHard, #weakExtreme {
+  background-color: #f44336;
+}
+
+#not-bad, #not-badHard, #not-badExtreme {
+  background-color: darkorange;
+}
+
+#average, #averageHard, #averageExtreme {
+  background-color: #757575;
+}
+
+#good, #goodHard, #goodExtreme {
+  background-color: darkgreen;
+}
+
+#perfect, #perfectHard, #perfectExtreme {
+  background-color: deepskyblue;
+}
+
+#weak, #not-bad, #average, #good, #perfect, #weakHard, #not-badHard, #averageHard, #goodHard, #perfectHard,
+#weakExtreme, #not-badExtreme, #averageExtreme, #averageExtreme, #goodExtreme, #perfectExtreme {
+  color: white;
+  font-weight: bold;
+}
+
+mat-chip-list {
+  display: flex;
+  justify-content: center;
+}
+
+span {
+  white-space: pre-wrap;
+}
+
+#settings:hover {
+  animation: rotateRight 1s ease-in-out;
+}
+
+mat-card {
+  min-width: 400px;
+}
