@@ -19,6 +19,9 @@
   "menuComponent_normalLevel": "Normal",
   "menuComponent_hardLevel": "Hard",
   "menuComponent_extremeLevel": "Extreme",
+  "menuComponent_sounds": "Sounds",
+  "menuComponent_soundOn": "On",
+  "menuComponent_soundOff": "Off",
 
   "mainComponent_startTitle": "Press Start button to play...",
   "mainComponent_instruction": "Type the given words as fast as you can! Press space key to skip or get the next word!",

@@ -27,6 +27,9 @@
       <button mat-menu-item [matMenuTriggerFor]="appLanguageMenu">
         {{'menuComponent_appLanguages' | translate}}
       </button>
+      <button mat-menu-item [matMenuTriggerFor]="soundsMenu">
+        {{'menuComponent_sounds' | translate}}
+      </button>
     </mat-menu>
     <mat-menu #appLanguageMenu="matMenu" yPosition="below" overlapTrigger="false">
       <button mat-menu-item *ngFor="let l of appLanguages" (click)="chooseAppLanguage(l.code)"
@@ -36,6 +39,14 @@
     <mat-menu #levelMenu="matMenu" yPosition="below" overlapTrigger="false">
       <button mat-menu-item *ngFor="let level of levels" (click)="chooseLevel(level.code)"
               [class.chosen]="level.code == gameService.getLevel()">{{level.title | translate}}
+      </button>
+    </mat-menu>
+    <mat-menu #soundsMenu="matMenu" yPosition="below" overlapTrigger="false">
+      <button mat-menu-item (click)="gameService.soundsOn()" [class.chosen]="gameService.isSoundOn()">
+        {{'menuComponent_soundOn' | translate}}
+      </button>
+      <button mat-menu-item (click)="gameService.soundsOff()" [class.chosen]="!gameService.isSoundOn()">
+        {{'menuComponent_soundOff' | translate}}
       </button>
     </mat-menu>
   </div>

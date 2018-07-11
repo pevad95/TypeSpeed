@@ -6,7 +6,7 @@
     <p *ngIf="!gameService.isPlaying()" class="mat-typography instruction">{{'mainComponent_instruction' | translate}}</p>
 
     <div>
-      <h1 class="mat-h1" *ngIf="gameService.isPlaying() && !hide">{{word}}</h1>
+      <h1 class="mat-h1" [class.word-incorrect]="wordIncorrect" *ngIf="gameService.isPlaying() && !hide">{{word}}</h1>
       <h1 class="mat-h1" *ngIf="gameService.isPlaying() && hide">...</h1>
     </div>
 

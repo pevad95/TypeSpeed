@@ -19,6 +19,9 @@
   "menuComponent_normalLevel": "Normál",
   "menuComponent_hardLevel": "Nehéz",
   "menuComponent_extremeLevel": "Extrém",
+  "menuComponent_sounds": "Hang",
+  "menuComponent_soundOn": "Be",
+  "menuComponent_soundOff": "Ki",
 
   "mainComponent_startTitle": "A kezdéshez válassza a Start gombot...",
   "mainComponent_instruction": "Gépelje le a megjelenő szavakat a lehető leggyorsabban! A folytatáshoz használja a space billentyűt!",
@@ -45,7 +48,7 @@
   "statisticsComponent_averageSpeed": "Átlagsebesség",
 
   "helpComponent_aboutTheGame": "A játékról...",
-  "helpComponent_description": "A játék célja, hogy egy perc alatt minél több szót gépeljen le helyesen. Minden szó 1 pontot ért, a 10 karakternél hosszabbak 2 pontot. A sebesség és a minősítés meghatározása a leütött karakterek alapján történik. A játék végén megtekintheti az eredményeit. Ha egy szót túl nehéznek talál, ugorja át a space billentyű segítségével! Nehéz szintet választva csak akkor ugorható át egy szó, ha legalább a fele helyessen be lett gépelve, extrém szint esetén az eddigieken túl az aktuális szó csak egy nagyon rövid ideig lesz látható. Sok sikert kívánunk! :)",
+  "helpComponent_description": "A játék célja, hogy egy perc alatt minél több szót gépeljen le helyesen. Minden szó 1 pontot ér, a 10 karakternél hosszabbak 2 pontot. A sebesség és a minősítés meghatározása a leütött karakterek alapján történik. A játék végén megtekintheti az eredményeit. Ha egy szót túl nehéznek talál, ugorja át a space billentyű segítségével! Nehéz szintet választva csak akkor ugorható át egy szó, ha legalább a fele helyessen be lett gépelve, extrém szint esetén az eddigieken túl az aktuális szó csak egy nagyon rövid ideig lesz látható. Sok sikert kívánunk! :)",
   "helpComponent_qualification": "Az ön minősítése...",
   "helpComponent_limitWeak": "ha a sebessége kevesebb, mint 50 karakter/perc",
   "helpComponent_limitNotBad": "ha a sebessége 50 és 120 karakter/perc között van",

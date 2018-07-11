@@ -86,3 +86,8 @@ p.average, p.not-bad, p.good {
   width: 50%;
   margin: 20px auto 20px auto;
 }
+
+h1.word-incorrect {
+  color: red;
+  transition: 0.25s;
+}

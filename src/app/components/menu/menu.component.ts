@@ -60,4 +60,11 @@ export class MenuComponent implements OnInit {
     this.gameService.saveLevel(code);
   }
 
+  soundOn() {
+    this.gameService.soundsOn();
+  }
+
+  soundOff() {
+    this.gameService.soundsOff();
+  }
 }

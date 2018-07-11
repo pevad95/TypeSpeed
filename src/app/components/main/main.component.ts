@@ -4,10 +4,13 @@ import {Game, GameListener, Result} from "../../Model/Game";
 import {LanguageService} from "../../services/language.service";
 import {GameService} from "../../services/game.service";
 import {ONE_MINUTE_INTERVAL} from "../../Model/Timer";
-import {MatProgressSpinner, MatSnackBar, MatSnackBarModule} from "@angular/material";
 import {StatisticsService} from "../../services/statistics.service";
+import {Location} from "@angular/common";
 
 export const SHOW_RESULT = true;
+export const SCREAM_SOUND = "/assets/sounds/scream.mp3";
+export const TIMER_SOUND = "/assets/sounds/timer.mp3";
+export const TIMER_SOUND_LIMIT = 16;
 
 export function incorrectWordValidator(word: string): ValidatorFn {
   return (control: AbstractControl): {
@@ -39,15 +42,21 @@ export class MainComponent implements OnInit, GameListener {
   timeLeftPercentage: number;
   correct: boolean;
   hide:boolean;
+  wordIncorrect: boolean;
 
   words: Word[] = [];
 
   wordForm: FormGroup;
 
+  screamAudio: any;
+  timerAudio: any;
+
   @ViewChild('wordInput') wordInput: ElementRef;
 
   constructor(private languageService: LanguageService,
-              public gameService: GameService, public snackBar: MatSnackBar, public statisticsService: StatisticsService) {
+              public gameService: GameService,
+              public statisticsService: StatisticsService,
+              private location: Location) {
     this.game = new Game(this, languageService, gameService);
     this.wordForm =  new FormGroup({
       typedWord: new FormControl({value: '', disabled: true}, [])
@@ -64,6 +73,7 @@ export class MainComponent implements OnInit, GameListener {
   keyUp(event: any) {
     event.preventDefault();
     this.tmpWord = this.word;
+    this.wordIncorrect = !this.word.startsWith(this.typedWord.value.trim());
     if (event.key == " ") {
       this.game.next(this.typedWord.value.trim());
       this.wordForm.controls['typedWord'].setValue("");
@@ -93,6 +103,9 @@ export class MainComponent implements OnInit, GameListener {
   tick(time: number) {
     this.time = time;
     this.timeLeftPercentage = (time / ONE_MINUTE_INTERVAL) * 100;
+    if (time == TIMER_SOUND_LIMIT && this.gameService.isSoundOn()) {
+      this.playTimerSound(TIMER_SOUND);
+    }
   }
 
   tickProgress(time: number, maxTime: number) {
@@ -109,6 +122,7 @@ export class MainComponent implements OnInit, GameListener {
   }
 
   newWord(word: string) {
+    this.wordIncorrect = false;
     this.hide = false;
     this.word = word;
     this.wordForm.controls['typedWord'].setValidators(incorrectWordValidator(word));
@@ -119,9 +133,22 @@ export class MainComponent implements OnInit, GameListener {
     this.words.push({word: this.tmpWord, correct: true});
   }
 
+  playScreamSound(url: string) {
+    this.screamAudio = new Audio(this.location['_baseHref'] + url);
+    this.screamAudio.play();
+  }
+
+  playTimerSound(url: string) {
+    this.timerAudio = new Audio(this.location['_baseHref'] + url);
+    this.timerAudio.play();
+  }
+
   wrongWord() {
     this.correct = false;
     this.words.push({word: this.tmpWord, correct: false});
+    if (this.gameService.isSoundOn()) {
+      this.playScreamSound(SCREAM_SOUND);
+    }
   }
 
   hideWord() {
