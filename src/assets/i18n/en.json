@@ -37,6 +37,8 @@
   "mainComponent_betterThanAverage": "Great, this is better than your average speed! :)",
   "mainComponent_average": "OK, this is your average!",
   "mainComponent_worseThanAverage": "This is not as good as your average. Try again! :)",
+  "mainComponent_numOfKeyStrokes": "All keystrokes",
+  "mainComponent_effectiveness": "Effectiveness",
 
   "statisticsComponent_title": "Results",
   "statisticsComponent_firstGame": "You haven't played yet. Let's try... :)",

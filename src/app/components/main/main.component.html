@@ -57,6 +57,8 @@
       <p class="mat-typography">{{'mainComponent_pressedKeys' | translate}}: {{result.hits}}</p>
       <p class="mat-typography">{{'mainComponent_rate' | translate}}: {{getResultPercentage()}}%</p>
       <p class="mat-typography">{{'mainComponent_simpleSpeed' | translate}}: {{getSimpleSpeed()}} {{'wordsPerMin' | translate}}</p>
+      <p class="mat-typography">{{'mainComponent_numOfKeyStrokes' | translate}}: {{numOfKeyStrokes}}</p>
+      <p class="mat-typography">{{'mainComponent_effectiveness' | translate}}: {{getEffectiveness()}} %</p>
       <mat-chip-list>
         <mat-chip id="weak" *ngIf="statisticsService.isResultWeak(result.hits)"><span>{{'weak' | translate}} </span><mat-icon svgIcon="weak"></mat-icon></mat-chip>
         <mat-chip id="not-bad" *ngIf="statisticsService.isResultNotBad(result.hits)"><span>{{'notBad' | translate}} </span><mat-icon svgIcon="not-bad"></mat-icon></mat-chip>

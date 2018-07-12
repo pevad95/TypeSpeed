@@ -43,6 +43,7 @@ export class MainComponent implements OnInit, GameListener {
   correct: boolean;
   hide:boolean;
   wordIncorrect: boolean;
+  numOfKeyStrokes: number;
 
   words: Word[] = [];
 
@@ -72,6 +73,9 @@ export class MainComponent implements OnInit, GameListener {
 
   keyUp(event: any) {
     event.preventDefault();
+    if (event.key != " ") {
+      this.numOfKeyStrokes++;
+    }
     this.tmpWord = this.word;
     this.wordIncorrect = !this.word.startsWith(this.typedWord.value.trim());
     if (event.key == " ") {
@@ -90,6 +94,7 @@ export class MainComponent implements OnInit, GameListener {
     this.game.start();
     this.wordInput.nativeElement.focus();
     this.correct = true;
+    this.numOfKeyStrokes = 0;
   }
 
   stopGame() {
@@ -157,6 +162,14 @@ export class MainComponent implements OnInit, GameListener {
 
   getSimpleSpeed(): number {
     return this.result.points + this.result.errors;
+  }
+
+  getEffectiveness() {
+    if (this.numOfKeyStrokes == 0) {
+      return 0;
+    }
+
+    return Math.floor((this.result.hits / this.numOfKeyStrokes) * 100);
   }
 
   getResultPercentage() {

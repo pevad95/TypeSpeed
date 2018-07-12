@@ -37,6 +37,8 @@
   "mainComponent_betterThanAverage": "Nagyszerű ez jobb volt az eddigi átlagnál! :)",
   "mainComponent_average": "Nem rossz, ez pont az átlag!",
   "mainComponent_worseThanAverage": "Ez most az átlag alatt volt, próbálja meg újra! :)",
+  "mainComponent_numOfKeyStrokes": "Összesen leütött billentyű",
+  "mainComponent_effectiveness": "Hatékonyság",
 
   "statisticsComponent_title": "Eredmények",
   "statisticsComponent_firstGame": "Ön még nem játszott! Próbálja meg... :)",
